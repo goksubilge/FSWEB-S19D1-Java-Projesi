@@ -1,6 +1,7 @@
 package com.wit.s191.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,7 @@ public class Movie {
     @Column(name = "rating")
     private int rating;
     @Column(name = "release_date")
+    @Past
     private LocalDate releaseDate;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -32,7 +34,7 @@ public class Movie {
     inverseJoinColumns = @JoinColumn( name= "actor_id"))
     private List<Actor> actorList;
 
-    // utility fuction
+    // utility function
     public void addActor(Actor actor){
         if(actorList == null){
             actorList = new ArrayList<>();

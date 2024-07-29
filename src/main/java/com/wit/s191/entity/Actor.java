@@ -1,6 +1,7 @@
 package com.wit.s191.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,7 @@ public class Actor {
     //@Column(name = "gender")
     private Gender gender;
     @Column(name = "birth_date")
+    @Past
     private LocalDate birthDate;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
